@@ -3,251 +3,37 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="罗健的游戏作品集：Light and Shadow。展示光影解谜游戏的关卡设计、蓝图实现与试玩反馈。">
-<title>罗健 · Light and Shadow | 游戏作品集</title>
-<link rel="stylesheet" href="styles.css">
+<meta name="description" content="罗健 · 游戏设计作品集，关于我、精选作品与项目详情。">
+<title>罗健 | 游戏设计作品集</title>
+<link rel="stylesheet" href="portfolio.css">
 </head>
-<body>
-<a class="skip-link" href="#project">跳转到项目内容</a>
-<header>
-<a class="wordmark" href="#home">罗健 <span>GAME DESIGN / PORTFOLIO</span>
-</a>
+<body class="portfolio-home">
+<a class="skip-link" href="#about">跳转到正文</a>
+<header class="home-header">
+<a class="home-brand" href="index.html">罗健<span>GAME DESIGN PORTFOLIO</span></a>
 <nav aria-label="主导航">
-<a href="#project">项目</a>
-<a href="#levels">关卡设计</a>
-<a href="#reflection">复盘</a>
+<a href="#about">关于我</a><a href="#projects">作品</a><a href="index-en.html" lang="en">EN</a>
 </nav>
 </header>
-<main id="home">
-<section class="hero">
-<div>
-<p class="eyebrow">GAME DESIGN · PROJECT 02</p>
-<h1>LIGHT<br>AND <em>SHADOW</em>
-</h1>
-<p class="subtitle">光与影之间，寻找前进的路。</p>
-<p class="intro">在地下洞穴中探索，切换光影状态，利用镜面反射解开谜题。这是我的解谜角色扮演游戏项目。</p>
-<a class="button" href="#project">探索项目 ↘</a>
-</div>
-<figure class="hero-image">
-<img src="assets/image/page-1-image-4.webp" alt="Light and Shadow 中角色站在绿色发光机关前" width="383" height="382" fetchpriority="high">
-<figcaption>LIGHT AND SHADOW / 游戏原型</figcaption>
-</figure>
-</section>
-<div class="meta">
-<div>
-<span>项目名称</span>Light and Shadow</div>
-<div>
-<span>游戏类型</span>解谜 · 角色扮演</div>
-<div>
-<span>核心机制</span>光影切换 · 镜面反射</div>
-<div>
-<span>关卡结构</span>教程 + 3 个关卡</div>
-</div>
-<section id="project" class="section">
-<div class="section-heading">
-<p class="eyebrow">01 / CONCEPT</p>
-<h2>在地下世界，<br>让光成为线索。</h2>
-</div>
-<div class="two-col">
-<article>
-<h3>世界背景</h3>
-<p>经历漫长的环境破坏后，地表只剩风沙与土石，人类被迫转入地下生活。光与黑暗成为日常的伴侣，而人类也持续与一种力量不强、却十分聪明的拟态生物争夺领地。</p>
-</article>
-<article>
-<h3>玩家角色</h3>
-<p>玩家扮演一名开拓者，深入自然形成的地下洞穴，寻找新的空间，为族群拓展生存领地。探索过程中，需要借助光线、阴影与环境机关找到通往下一关的道路。</p>
-</article>
-</div>
-<div class="mechanics">
-<article>
-<span>01</span>
-<h3>观察光线</h3>
-<p>通过场景中的光线引导，识别可交互物体与前进方向。</p>
-</article>
-<article>
-<span>02</span>
-<h3>切换状态</h3>
-<p>在光与影之间切换；教程通过按键提示介绍角色颜色的变化。</p>
-</article>
-<article>
-<span>03</span>
-<h3>利用反射</h3>
-<p>与镜面机关交互，改变光线路径，探索通往目标的解谜方式。</p>
-</article>
-</div>
-<div class="process-grid">
-<div class="flow">
-<figure>
-<a href="assets/image/page-2-image-1.webp" target="_blank" rel="noopener">
-<img src="assets/image/page-2-image-1.webp" alt="游戏流程图：玩法引导、交互物体、光影切换、镜面反射与最终目标" width="756" height="590" loading="lazy">
-</a>
-<figcaption>游戏流程图 · 点击查看大图</figcaption>
-</figure>
-</div>
-<article class="reference">
-<p class="eyebrow">GAME REFERENCE</p>
-<h3>设计参考</h3>
-<img src="assets/image/page-2-image-0.webp" alt="参考游戏 Human: Fall Flat 宣传画面，非本人作品" width="420" height="221" loading="lazy">
-<p>原作品集列出的参考游戏：<cite>Human: Fall Flat</cite>（《人类一败涂地》）。此图为参考作品图像。</p>
-</article>
+<main>
+<section class="about-section" id="about" aria-labelledby="about-title">
+<div class="about-inner">
+<p class="overline">HELLO, I’M 罗健</p>
+<h1 id="about-title">About Me / 关于我</h1>
+<div class="bio"><p>你好，我是罗健。我的作品围绕游戏机制、关卡设计和可玩原型展开，探索空间、视觉线索与交互如何共同构成游戏体验。</p><p>在《Light and Shadow》中，我通过解谜机制、关卡草图与蓝图实现探索光与影。这里记录了项目从想法、搭建到试玩复盘的过程。</p></div>
+<div class="about-bottom"><ul class="specialties"><li>游戏机制</li><li>关卡设计</li><li>蓝图实现</li></ul><a class="work-link" href="#projects">浏览我的作品 <span aria-hidden="true">↓</span></a></div>
 </div>
 </section>
-<section id="levels" class="section">
-<div class="section-heading">
-<p class="eyebrow">02 / LEVEL DESIGN</p>
-<h2>从纸上的路径，<br>到可探索的空间。</h2>
+<section id="projects" class="projects-section" aria-labelledby="projects-title">
+<div class="projects-heading"><p class="overline">THE PORTFOLIO</p><h2 id="projects-title">精选作品</h2><p>点击项目卡片，查看设计过程、项目图片与复盘。</p></div>
+<div class="project-grid">
+<article class="project-card"><a class="project-card-link" href="light-and-shadow.html" aria-label="查看 Light and Shadow 项目详情">
+<div class="card-cover"><img src="assets/image/page-1-image-0.webp" width="824" height="413" alt="Light and Shadow 游戏原型画面"><div class="cover-label"><span>LIGHT AND SHADOW</span><span class="card-arrow" aria-hidden="true">↗</span></div></div>
+<div class="card-content"><div class="tags"><span>解谜</span><span>关卡设计</span><span>Blueprints</span></div><h3>Light and Shadow</h3><p>探索地下洞穴，在光与影之间切换，通过镜面改变光线路径。这是一款围绕环境机关展开的解谜角色扮演游戏。</p><ul><li>教程与三个关卡</li><li>关卡草图与场景白盒</li><li>Line Trace 蓝图与试玩复盘</li></ul><span class="card-cta">查看项目详情 <span aria-hidden="true">→</span></span></div>
+</a></article>
 </div>
-<p>教程关卡与 Level 1–3 的原始设计草图，记录光源、机关、镜面与关卡路径的布局。</p>
-<div class="sketch-grid">
-<figure>
-<a href="assets/image/page-3-image-0.webp" target="_blank" rel="noopener">
-<img src="assets/image/page-3-image-0.webp" alt="Tutorial Level / 教程 关卡布局原始草图" width="211" height="405" loading="lazy">
-</a>
-<figcaption>Tutorial Level / 教程</figcaption>
-</figure>
-<figure>
-<a href="assets/image/page-3-image-2.webp" target="_blank" rel="noopener">
-<img src="assets/image/page-3-image-2.webp" alt="Level 1 关卡布局原始草图" width="280" height="372" loading="lazy">
-</a>
-<figcaption>Level 1</figcaption>
-</figure>
-<figure>
-<a href="assets/image/page-3-image-4.webp" target="_blank" rel="noopener">
-<img src="assets/image/page-3-image-4.webp" alt="Level 2 关卡布局原始草图" width="290" height="392" loading="lazy">
-</a>
-<figcaption>Level 2</figcaption>
-</figure>
-<figure>
-<a href="assets/image/page-3-image-5.webp" target="_blank" rel="noopener">
-<img src="assets/image/page-3-image-5.webp" alt="Level 3 关卡布局原始草图" width="245" height="392" loading="lazy">
-</a>
-<figcaption>Level 3</figcaption>
-</figure>
-</div>
-<details>
-<summary>查看草图图例与 Level 3 补充布局</summary>
-<div class="two-col extra">
-<img src="assets/image/page-3-image-1.webp" alt="光影状态与机关符号的手写图例" width="508" height="123" loading="lazy">
-<img src="assets/image/page-3-image-3.webp" alt="Level 3 补充布局草图" width="446" height="392" loading="lazy">
-</div>
-</details>
-</section>
-<section class="section">
-<div class="section-heading">
-<p class="eyebrow">03 / BUILDING PROCESS</p>
-<h2>把机制搭建出来。</h2>
-</div>
-<p>通过场景白盒验证空间与机关布局，并在蓝图中搭建 Line Trace（射线检测）逻辑。</p>
-<div class="blueprint">
-<figure>
-<a href="assets/image/page-4-image-2.webp" target="_blank" rel="noopener">
-<img src="assets/image/page-4-image-2.webp" alt="Line Trace 蓝图的节点及连接逻辑" width="1022" height="603" loading="lazy">
-</a>
-<figcaption>BLUEPRINT / LINE TRACE · 点击查看原图</figcaption>
-</figure>
-</div>
-<div class="gallery build">
-<figure>
-<a href="assets/image/page-4-image-0.webp" target="_blank" rel="noopener">
-<img src="assets/image/page-4-image-0.webp" alt="场景白盒搭建" width="412" height="290" loading="lazy">
-</a>
-<figcaption>场景白盒搭建</figcaption>
-</figure>
-<figure>
-<a href="assets/image/page-4-image-1.webp" target="_blank" rel="noopener">
-<img src="assets/image/page-4-image-1.webp" alt="空间与路径布局" width="412" height="332" loading="lazy">
-</a>
-<figcaption>空间与路径布局</figcaption>
-</figure>
-<figure>
-<a href="assets/image/page-4-image-3.webp" target="_blank" rel="noopener">
-<img src="assets/image/page-4-image-3.webp" alt="光影机关原型" width="412" height="266" loading="lazy">
-</a>
-<figcaption>光影机关原型</figcaption>
-</figure>
-</div>
-</section>
-<section class="section">
-<div class="section-heading">
-<p class="eyebrow">04 / IN GAME</p>
-<h2>关卡实机画面。</h2>
-</div>
-<div class="gallery">
-<figure>
-<a href="assets/image/page-5-image-0.webp" target="_blank" rel="noopener">
-<img src="assets/image/page-5-image-0.webp" alt="Tutorial / 角色状态引导游戏截图" width="384" height="307" loading="lazy">
-</a>
-<figcaption>Tutorial / 角色状态引导</figcaption>
-</figure>
-<figure>
-<a href="assets/image/page-5-image-2.webp" target="_blank" rel="noopener">
-<img src="assets/image/page-5-image-2.webp" alt="Tutorial / 光状态游戏截图" width="384" height="307" loading="lazy">
-</a>
-<figcaption>Tutorial / 光状态</figcaption>
-</figure>
-<figure>
-<a href="assets/image/page-5-image-4.webp" target="_blank" rel="noopener">
-<img src="assets/image/page-5-image-4.webp" alt="Level 1 / 场景探索游戏截图" width="384" height="307" loading="lazy">
-</a>
-<figcaption>Level 1 / 场景探索</figcaption>
-</figure>
-<figure>
-<a href="assets/image/page-5-image-1.webp" target="_blank" rel="noopener">
-<img src="assets/image/page-5-image-1.webp" alt="Level 1 / 阴影区域游戏截图" width="384" height="307" loading="lazy">
-</a>
-<figcaption>Level 1 / 阴影区域</figcaption>
-</figure>
-<figure>
-<a href="assets/image/page-5-image-3.webp" target="_blank" rel="noopener">
-<img src="assets/image/page-5-image-3.webp" alt="Level 2 / 光线机关游戏截图" width="384" height="307" loading="lazy">
-</a>
-<figcaption>Level 2 / 光线机关</figcaption>
-</figure>
-<figure>
-<a href="assets/image/page-5-image-5.webp" target="_blank" rel="noopener">
-<img src="assets/image/page-5-image-5.webp" alt="Level 3 / 镜面布局游戏截图" width="384" height="307" loading="lazy">
-</a>
-<figcaption>Level 3 / 镜面布局</figcaption>
-</figure>
-</div>
-</section>
-<section id="reflection" class="section">
-<div class="section-heading">
-<p class="eyebrow">05 / PLAYTEST & REFLECTION</p>
-<h2>在试玩中，发现下一步。</h2>
-</div>
-<p>以下整理自项目中的试玩反馈，保留当时发现的优点与待改进问题。</p>
-<div class="two-col feedback">
-<article>
-<h3>有效的设计</h3>
-<ul>
-<li>引导帮助玩家理解当前需要完成的目标。</li>
-<li>玩法简单易上手，不依赖复杂操作。</li>
-<li>玩法流程提供新鲜感，减少单调体验。</li>
-</ul>
-</article>
-<article>
-<h3>待改进的方向</h3>
-<ul>
-<li>只有特定颜色能够执行部分操作，状态与功能的关系仍需优化。</li>
-<li>关卡区域大小与比例不均衡，影响空间感受。</li>
-<li>地图较小，可交互位置不足，影响探索体验。</li>
-<li>洞穴中的光线反馈过强、过亮，削弱了地下环境的氛围。</li>
-</ul>
-</article>
-</div>
-</section>
-<section class="source">
-<h3>原始项目档案</h3>
-<p>查看完整作品集排版与原始说明。</p>
-<a href="assets/light-and-shadow/portfolio.pdf" target="_blank" rel="noopener">打开项目 PDF ↗</a>
-<a href="https://youtu.be/QK2TVI5vI_Q" target="_blank" rel="noopener">观看原稿中的演示视频 ↗</a>
 </section>
 </main>
-<footer>
-<a class="wordmark" href="#home">罗健</a>
-<p>项目文字与图片整理自本人作品集 PDF。</p>
-<a href="#home">回到顶部 ↑</a>
-</footer>
+<footer class="home-footer"><span>罗健 · 游戏设计作品集</span><a href="#about">回到顶部 ↑</a></footer>
 </body>
 </html>

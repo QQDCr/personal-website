@@ -1,13 +1,29 @@
 # Luo Jian · Game Design Portfolio
 
-A bilingual portfolio website for **Light and Shadow**, featuring project content and images from Luo Jian's original portfolio PDF.
+A bilingual game design portfolio featuring an About Me introduction and a project card that opens a detailed case study of **Light and Shadow**.
 
-- `index.html`: Chinese project page covering the game background, gameplay mechanics, level sketches, Blueprint implementation, gameplay screenshots, and playtest feedback.
-- `index-en.html`: English version of the project page.
-- `styles.css`: Shared styling and responsive layouts for desktop and mobile.
+## Files
+
+- `index.html`: Chinese homepage with an introduction and project card.
+- `index-en.html`: English homepage.
+- `light-and-shadow.html`: Chinese project details, including gameplay mechanics, level sketches, Blueprints, screenshots, and playtest feedback.
+- `light-and-shadow-en.html`: English project details.
+- `portfolio.css`: Homepage styling and the shared dark theme.
+- `styles.css`: Project detail layouts and responsive styling.
 - `assets/image/`: WebP images extracted from the portfolio PDF.
-- `assets/light-and-shadow/portfolio.pdf`: A copy of the original portfolio PDF.
+- `assets/light-and-shadow/portfolio.pdf`: Original portfolio PDF.
 
-Open `index.html` or `index-en.html` directly in a browser to preview the website. No dependency installation is required.
+## Preview
 
-Project gallery images can be opened at full size. Links to the original PDF and demo video are available near the bottom of each page. **Human: Fall Flat** is clearly credited as a design reference rather than original work.
+Open `index.html` or `index-en.html` in a browser. No dependencies or build step are required. Select the project card to read the case study, and use “All projects” to return to the homepage. Each page includes a language link.
+
+Project gallery images open at full size. The case study includes links to the original PDF and demo video. **Human: Fall Flat** is identified as a design reference rather than original work. The portfolio currently features the one project supplied in the source material.
+
+## GitHub Pages
+
+The site is published from the `main` branch and repository root using GitHub Pages. The `.nojekyll` file serves the static HTML and assets without Jekyll processing.
+
+- Chinese homepage: https://qqdcr.github.io/personal-website/
+- English homepage: https://qqdcr.github.io/personal-website/index-en.html
+
+Push updates to `main` to publish subsequent changes automatically.
