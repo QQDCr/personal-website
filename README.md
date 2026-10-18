@@ -5,7 +5,8 @@ A bilingual portfolio website for **Light and Shadow**, featuring project conten
 - `index.html`: Chinese project page covering the game background, gameplay mechanics, level sketches, Blueprint implementation, gameplay screenshots, and playtest feedback.
 - `index-en.html`: English version of the project page.
 - `styles.css`: Shared styling and responsive layouts for desktop and mobile.
-- `assets/light-and-shadow/`: WebP images extracted from the portfolio PDF and a copy of the original PDF.
+- `assets/image/`: WebP images extracted from the portfolio PDF.
+- `assets/light-and-shadow/portfolio.pdf`: A copy of the original portfolio PDF.
 
 Open `index.html` or `index-en.html` directly in a browser to preview the website. No dependency installation is required.
 
