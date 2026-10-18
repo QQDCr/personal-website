@@ -1,30 +1,17 @@
 # Luo Jian · Game Design Portfolio
 
-A bilingual game design portfolio featuring an About Me introduction and a project card that opens a detailed case study of **Light and Shadow**.
+A bilingual portfolio with an About Me introduction, a project card, and a detailed Light and Shadow case study.
 
-## Files
+- `index.html`: Unified homepage containing both English and Chinese. English is shown by default.
+- `light-and-shadow.html`: Unified bilingual project details and image galleries.
+- `language.js`: In-page language switching. Click 中文 or EN; no language preference is stored. Chinese links use `?lang=zh`.
+- `index-en.html`, `index-zh.html`, `light-and-shadow-en.html`: Redirects for older links, not separate content pages.
+- `portfolio.css`, `styles.css`: Responsive styling.
+- `assets/image/`: Images extracted from the original portfolio.
+- `assets/light-and-shadow/portfolio.pdf`: Original PDF.
 
-- `index.html`: Default English homepage with an introduction and project card.
-- `index-zh.html`: Chinese homepage, accessible through the language switch.
-- `index-en.html`: English homepage retained for existing links.
-- `light-and-shadow.html`: Chinese project details, including gameplay mechanics, level sketches, Blueprints, screenshots, and playtest feedback.
-- `light-and-shadow-en.html`: English project details.
-- `portfolio.css`: Homepage styling and the shared dark theme.
-- `styles.css`: Project detail layouts and responsive styling.
-- `assets/image/`: WebP images extracted from the portfolio PDF.
-- `assets/light-and-shadow/portfolio.pdf`: Original portfolio PDF.
+Open `index.html` locally or visit https://qqdcr.github.io/personal-website/ . No build step is required. The root URL always defaults to English. Language selection is preserved when navigating between the homepage and project details.
 
-## Preview
+GitHub Pages publishes from the `main` branch root. `.nojekyll` enables static file serving. Push to `main` to update the live site.
 
-Open `index.html` or `index-zh.html` in a browser. No dependencies or build step are required. Select the project card to read the case study, and use “All projects” to return to the homepage. Each page includes a language link.
-
-Project gallery images open at full size. The case study includes links to the original PDF and demo video. **Human: Fall Flat** is identified as a design reference rather than original work. The portfolio currently features the one project supplied in the source material.
-
-## GitHub Pages
-
-The site is published from the `main` branch and repository root using GitHub Pages. The `.nojekyll` file serves the static HTML and assets without Jekyll processing.
-
-- Chinese homepage: https://qqdcr.github.io/personal-website/index-zh.html
-- English homepage (default): https://qqdcr.github.io/personal-website/
-
-Push updates to `main` to publish subsequent changes automatically.
+Human: Fall Flat is identified as a design reference, not original work.
