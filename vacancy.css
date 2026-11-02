@@ -1,0 +1,23 @@
+.vacancy-page{--accent:#d8c28f}
+.vacancy-page .hero{grid-template-columns:1.05fr 1fr}
+.vacancy-page h1{letter-spacing:.01em;font-family:Georgia,serif;font-weight:500;color:#f0e5c9}
+.vacancy-page .hero-image{background:#18211d;border:1px solid #58604d}
+.vacancy-page .hero-image img{aspect-ratio:1000/564;object-fit:contain}
+.vacancy-page .intro{max-width:520px;font-size:16px}
+.vacancy-page .button{background:#4b573f;color:#fff5d8;border:1px solid #77815e}
+.vacancy-page .button:hover{background:#606e50}
+.vacancy-page .button.secondary{background:transparent;border-color:#59616b;color:#e4e8ec}
+.actions{display:flex;flex-wrap:wrap;gap:12px}
+.vacancy-page .meta>div{min-width:0;overflow-wrap:anywhere}
+.vacancy-page .quote{border-left:2px solid #b39a63;padding:20px 26px;margin:30px 0 0;background:#232c28;font-family:Georgia,serif;color:#dfd3b5;font-size:20px;line-height:1.8}
+.vacancy-page .mechanics{background:#253229;margin-bottom:0}
+.vacancy-page .mechanics article>span{color:#dbc797}
+.play-note{font-size:13px;color:var(--muted);margin:18px 0}
+.game-frame{display:block;width:100%;height:780px;height:min(85vh,900px);min-height:560px;border:1px solid #55604a;background:#101313;margin-top:28px;border-radius:5px}
+.archive-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:30px}
+.archive-grid figure{min-width:0}
+.archive-grid img{width:100%;aspect-ratio:612/792;object-fit:contain;background:#fff;border:1px solid #4d5359}
+.archive-grid figcaption{font-size:12px;color:var(--muted);margin-top:12px;line-height:1.65}
+.document-links{display:flex;flex-wrap:wrap;gap:12px 24px;margin-top:24px;font-size:14px}
+.vacancy-page .source{font-size:14px}.vacancy-page .source p{max-width:780px;color:var(--muted)}
+@media(max-width:600px){.vacancy-page .hero{grid-template-columns:1fr}.vacancy-page .hero-image{max-width:none}.archive-grid{grid-template-columns:1fr}.archive-grid figure{max-width:440px;margin:auto}.game-frame{min-height:620px}.vacancy-page .quote{font-size:18px;padding:16px 20px}.actions .button{margin-top:0}.actions{margin-top:24px}}

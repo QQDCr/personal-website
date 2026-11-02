@@ -1,0 +1,287 @@
+:: StoryTitle
+Vacancy — A Shenmi Fusu Fan Game
+
+:: StoryData
+{"ifid": "B38D22B8-237B-49C0-9861-C2C3D7E21017", "format": "Harlowe", "format-version": "3.3.9", "start": "Vacancy"}
+
+:: Vacancy
+(set: $rot to 0, $bell to false, $book to false, $foil to false, $name to false, $saved to false, $looked to false)
+<div class="eyebrow">PARANORMAL INCIDENT / CASE 017</div>
+<div class="hero"><div class="sigil">017</div><div class="hero-copy"><h1>VACANCY</h1><p>A Shenmi Fusu fan-fiction game</p></div></div>
+<div class="quote">The god does not answer prayers.<br>It is checking who still owes it a name.</div>
+You are a temporary investigator, barely an hour into the night shift. At 2:17 a.m., a shrine scheduled for demolition appears where the subway exit should be.
+
+The phones of the people who went inside are still ringing. Whenever someone picks up, the same voice answers.
+
+[[Take the shift that should never have been yours->Street]]
+<div class="meta">About 5–10 minutes · Five endings · Click choices to continue<br>Contains supernatural horror, death, and loss of identity.<br>No jump scares, sudden audio, or timed choices.<br>Use ↶ to undo a choice. You can restart after any ending.</div>
+<div class="credit">Inspired by Shenmi Fusu by Fo Qian Xian Hua. This unofficial fan work features an original cast and incident.</div>
+
+:: Street
+<div class="eyebrow">01 / ARRIVAL</div><h2>A street with no way out</h2>
+You turn around. The subway entrance is a brick wall. Figures in the windows lower their heads in unison, as though waiting for you to make the first move.
+
+Your colleague's last message remains on your screen:
+<blockquote>Ordinary methods cannot kill a ghost. Find its rules before you try to contain it. You can use that borrowed Ghost Eye twice tonight. Open it a third time, and whatever wakes up may no longer be you.</blockquote>
+A delivery courier kneels outside the shrine. He keeps repeating, “I already gave you my name. Why won't you let me leave?”
+
+You sigh. Looks like tonight you have to pick a fight with a god.
+
+[[Approach the courier->Threshold]]
+
+:: Threshold
+<div class="eyebrow">02 / THE FIRST RULE</div><h2>Do not answer</h2>
+From behind the door, your mother's voice calls your full name.
+
+The courier catches your trouser leg. “Don't answer. Ever since I did, it keeps telling me to come inside.”
+
+A red thread around his wrist disappears through the door. Faint words are carved into the threshold: <em>Those who answer shall be entered.</em>
+
+[[Hold your breath. Stay silent->Hall]]
+[[Answer “I'm here” to find out if it is your mother->Answer]]
+
+:: Answer
+<div class="eyebrow">A RULE HAS BEEN TRIGGERED</div><h2>It heard you</h2>
+The voice stops. Your name appears on the door, its final stroke still bleeding ink.
+
+It did not recognize you. You confirmed who you were.
+
+[[Force the Ghost Eye open to sever the new thread (+1 Corruption)->Sever]]
+[[Follow your mother's voice inside->Succession]]
+
+:: Sever
+(set: $rot to $rot + 1)
+<h2>Borrowed sight</h2>
+The thing beneath your forehead opens. You see a thread connecting your name to the darkness beyond the door. Your gaze cuts it before it can pull tight.
+
+Something warm runs down your cheek. Your name fades from the wood. Your mother's voice becomes the scraping of timber.
+
+[[Retreat into the hall with the courier->Hall]]
+
+:: Hall
+<div class="eyebrow">03 / INVESTIGATION</div><h2>The shrine is empty</h2>
+There is no statue on the altar. Only a chair facing the wall. Its back is engraved: <em>The named shall sit. The nameless may return.</em>
+
+The courier sits against a wall. The red thread still bites into his wrist. He no longer dares to look at the chair.
+
+There is no countdown here. Take the time you need to investigate.
+<div class="status">(if: $bell)[✓ Bell rule　](if: $book)[✓ Ledger rule　](if: $name)[✓ True name　](if: $foil)[✓ Gold case]</div>
+[[Examine the bronze bell->Bell]]
+[[Read the offering ledger->Ledger]]
+[[Search the altar drawer->Drawer]]
+[[Inspect the marks on the chair->Chair]]
+[[Deal with the thread around the courier's wrist->Rescue]]
+[[Enter the inner sanctuary when you are ready->Sanctuary]]
+
+:: Bell
+(set: $bell to true)
+<h2>When the bell rings, it seeks a seat</h2>
+You gently tap the little bell. The chair turns half an inch toward you. When the sound fades, it stops.
+
+An old label on the bell reads:
+<blockquote>One ring invites the god. Two rings seat it.<br>The god knows the names in the ledger, not their faces.</blockquote>
+You should not ring it a second time without a plan. You draw back your hand.
+
+[[Remember the rule and return to the hall->Hall]]
+
+:: Ledger
+(set: $book to true)
+<h2>This is not a book of wishes</h2>
+There are names on every page. Beside each, the column marked “Blessing” records a date and a cause of death.
+
+The final page holds the courier's name: <strong>Lin Zhao</strong>. The rest is blank.
+
+A crossed-out note is still legible:
+<blockquote>The unnamed are beyond its jurisdiction. Erase a name from the ledger to release its owner.<br>If the god's own name were entered in the offerings column...</blockquote>
+Blood obscures the rest. A dish of opaque gold paint sits on the altar, enough to cover the writing.
+
+[[Remember the rule and return to the hall->Hall]]
+
+:: Drawer
+(set: $foil to true)
+<h2>The previous investigator</h2>
+Inside the drawer is a case made from thin sheets of gold, just large enough for the ledger. Its clasp is intact. Fingernail scratches mark its edges.
+
+A note lies inside:
+<blockquote>Gold blocks supernatural influence.<br>Sealing the book alone does nothing. The entity is still in the chair.<br>Get it into the book first. Then close the case.</blockquote>
+You take the case. It is a containment device, not a weapon.
+
+[[Return to the hall->Hall]]
+
+:: Chair
+<h2>A name scraped away</h2>
+The back of the chair has been sanded again and again, but pale dust remains in the grooves. Nearby lie a stack of thin ritual paper and a piece of charcoal.
+
+(if: $name)[You already know the name buried here: the Incense Receiver.]
+[[Carefully make a charcoal rubbing->Rubbing]]
+(if: not $looked)[[[Use the Ghost Eye to see through the wood (+1 Corruption)->Gaze]]]
+[[Leave it for now and return to the hall->Hall]]
+
+:: Rubbing
+(set: $name to true)
+<h2>The Incense Receiver</h2>
+Charcoal slowly reveals the inscription: <strong>the Incense Receiver</strong>.
+
+Beneath it, smaller characters read: <em>At first there was no god. The people called it by this name.</em>
+
+You understand. The “god” is a ghost given an identity through worship. Perhaps that same identity can make it obey.
+
+[[Keep the rubbing and return to the hall->Hall]]
+
+:: Gaze
+(set: $rot to $rot + 1, $looked to true)
+(if: $rot >= 3)[(go-to: "Awakening")]
+(else:)[(set: $name to true)
+<h2>It is looking back</h2>
+The wood turns transparent. Behind it is a silhouette layered with human faces. Every mouth speaks the same name: <strong>the Incense Receiver</strong>.
+
+You close the Eye. Your shadow on the wall takes a moment longer.
+
+You have the name. It cost you more than a sheet of paper would have.
+[[Return to the hall->Hall]]]
+
+:: Rescue
+<h2>The other end of the thread</h2>
+(if: $saved)[Lin Zhao is free. He grips his work badge, checking over and over that his name is still there.
+[[Return to the hall->Hall]]]
+(else:)[“You didn't come here to pray, did you?” the courier whispers. “Then could you take me with you when you leave?”
+
+(if: $book)[[[Cover “Lin Zhao” in the ledger with gold paint->Erase]]]
+[[Suppress the thread with the Ghost Eye (+1 Corruption)->Intervene]]
+[[Investigate the rules first and return to the hall->Hall]]]
+
+:: Erase
+(set: $saved to true)
+<h2>Take away its target</h2>
+You do not touch the thread. You simply paint over the name “Lin Zhao.”
+
+It drops to the floor like an ordinary piece of old cotton. Lin Zhao stands up.
+
+“So you don't have to be stronger than it,” he says.
+
+[[Return to the hall->Hall]]
+
+:: Intervene
+(set: $rot to $rot + 1)
+(if: $rot >= 3)[(go-to: "Awakening")]
+(else:)[(set: $saved to true)
+<h2>Your blood for his name</h2>
+The thread snaps under the Eye's gaze. “Lin Zhao” fades from the ledger, while your shadow stretches an inch closer to the chair.
+
+Lin Zhao steadies you. “You look like you need to get out more than I do.”
+
+[[Return to the hall->Hall]]]
+
+:: Sanctuary
+<div class="eyebrow">04 / CONFRONTATION</div><h2>Sigh. I guess it's time to fight a god.</h2>
+You carry the ledger and bell into the inner sanctuary. The chair never passed through the doorway, yet it is already waiting in the middle of the room.
+
+A voice from the empty seat says, “Sit down. You can bring them back.”
+
+Outside, a whole street of phones is ringing. Each once belonged to someone who came here for help.
+
+Breaking the chair will not destroy the ghost. But perhaps you can make sure it never rules here as a god again.
+
+[[Return to the hall and keep investigating->Hall]]
+[[Open the Ghost Eye and shatter the throne (+1 Corruption)->Attack]]
+[[Sit down and take its place->Succession]]
+[[Look for a way out while it waits->Escape]]
+(if: $bell and $book and $name and $foil)[[[Write “the Incense Receiver” in the offerings column->Trap]]]
+(else:)[<div class="hint">Your containment plan is incomplete. You need the bell's rule, the ledger's rule, the god's name, and the gold case.</div>]
+
+:: Attack
+(set: $rot to $rot + 1)
+(if: $rot >= 3)[(go-to: "Awakening")]
+(else:)[<div class="eyebrow">ENDING 01 / FALSE VICTORY</div><h2>You killed a chair</h2>
+The wood splits. The ringing stops. The shrine door opens onto the street again.
+
+You step outside. Every shop has its lights on.
+
+Behind every counter stands a chair facing the wall.
+
+<div class="quote">You broke its seat.<br>Now it has a seat everywhere.</div>
+<div class="hint">Clue: destroying a vessel does not destroy its ghost. Find a rule that will draw it into the ledger.</div>
+[[Start over->Vacancy]]]
+
+:: Succession
+<div class="eyebrow">ENDING 02 / THE NEW GOD</div><h2>Someone finally takes over</h2>
+As you sit, every prayer in the city pours into your ears. Someone asks for safety. Someone asks for a reunion. Someone only asks not to dream tonight.
+
+You want to help them.
+
+But your hand has already written the first name in the ledger.
+
+<div class="quote">The position has been vacant for a long time.<br>It was never waiting for a hero. Just the next person on the night shift.</div>
+<div class="hint">Clue: inheriting the throne means inheriting its killing rules.</div>
+[[Start over->Vacancy]]
+
+:: Escape
+<div class="eyebrow">ENDING 03 / SURVIVOR</div><h2>Clocking out</h2>
+You follow the wall where no names are written. The ghost does not pursue you. It can only claim those who answered and were entered in its ledger.
+
+(if: $saved)[Lin Zhao follows you out. At dawn, he buys you a cup of hot soy milk from a convenience store. Neither of you mentions the night.]
+(else:)[Behind you, the courier asks, “Where's the exit?” You do not turn around. Wind swallows the rest of his words.]
+
+Your phone vibrates again. Another emergency call. The same street.
+
+<div class="quote">Survival is an ending.<br>But it is not the end of this incident.</div>
+[[Start over->Vacancy]]
+
+:: Trap
+<h2>Make the god an offering</h2>
+You write “the Incense Receiver” in the offerings column and place the ledger in the open gold case.
+
+The first ring. The chair turns toward the altar.
+
+The second ring. The impression of a seated figure slowly presses into the pages. For the first time, the entity is the target named by its own rule.
+
+Now you must make the final choice.
+
+[[Close the gold case immediately->Containment]]
+[[Take one last look inside the book (+1 Corruption)->Last Look]]
+
+:: Last Look
+(set: $rot to $rot + 1)
+(if: $rot >= 3)[(go-to: "Awakening")]
+(else:)[<h2>Do not hold its gaze</h2>
+The figure on the page raises its head. It has your face. For a moment, at least.
+
+You slam the case shut. The gold closes, cutting off the voice inside.
+[[Confirm containment->Containment]]]
+
+:: Containment
+<div class="eyebrow">ENDING 04 / VACANCY</div><h2>You did not kill the ghost.<br>You ended its reign as a god.</h2>
+The chair is an ordinary old chair again. Names disappear from the door, one by one. The phones in the street fall silent.
+
+(if: $saved)[Lin Zhao helps you lift the heavy case. “Come on,” he says. “Your shift is over.”]
+(else:)[The red thread falls from the courier's wrist. Lin Zhao stumbles after you. “Wait for me. I'm clocking out too.”]
+
+After sunrise, the case is transferred to containment storage. Number 017. In the notes, you write: <em>Do not open. Do not worship.</em>
+
+(if: $rot is 0)[You never used the Ghost Eye. Your most effective weapon was reading the rules to the end.]
+(else:)[The Eye beneath your forehead has not gone back to sleep. It reminds you that every use has a price.]
+
+<div class="quote">On the day the shrine was demolished, nobody knelt.</div>
+[[Play again and try different choices->Vacancy]]
+
+:: Awakening
+<div class="eyebrow">ENDING 05 / THE GHOST AWAKENS</div><h2>The third time, it is not you who opens the Eye</h2>
+You try to close it. Your body does not obey.
+
+You can see the street, the shrine, and the person lying on the ground. They are wearing your clothes. Their phone still displays a warning they never finished reading.
+
+<div class="quote">A new line is added to the incident report:<br>A second supernatural entity is now present at the scene.</div>
+<div class="hint">Clue: the third use of the Ghost Eye always causes a takeover. Reading, making a rubbing, and erasing a name cost no Corruption.</div>
+[[Start over->Vacancy]]
+
+:: Status [header]
+(if: (passage:)'s name is not "Vacancy")[<div class="hud"><span>CASE 017 · VACANCY</span><span>GHOST EYE · CORRUPTION (print: $rot) / 3</span></div>]
+
+:: Styles [stylesheet]
+html{background:#101313;color-scheme:dark}body{margin:0;background:radial-gradient(ellipse at 80% 0, #27312c55,transparent 55%),#101313;color:#d9ddd6}tw-story{font-family:"Microsoft YaHei","PingFang SC",sans-serif;font-size:18px;line-height:1.9;max-width:780px;margin:0 auto;padding:54px 42px 80px;box-sizing:border-box;min-height:100vh;border-left:1px solid #29312c;border-right:1px solid #29312c}tw-passage{display:block}h1,h2,.quote{font-family:"Songti SC",SimSun,serif}h1{font-size:88px;letter-spacing:.16em;line-height:1.15;margin:0;color:#f0e8ce}h2{font-size:32px;line-height:1.5;color:#eee5ce;margin:16px 0 28px}.eyebrow{font-size:12px;letter-spacing:3px;color:#b69b68;border-bottom:1px solid #394037;padding-bottom:16px}.hero{display:flex;align-items:center;gap:28px;margin:34px 0}.hero p{font-size:13px;letter-spacing:3px;color:#92998c;margin:12px 0}.sigil{border:1px solid #a48a55;outline:1px solid #4b4432;outline-offset:7px;color:#c5ac73;background:#1e231e;font-family:SimSun,serif;font-size:58px;min-width:96px;height:148px;display:flex;align-items:center;justify-content:center}.quote{border-left:2px solid #aa8a50;padding:14px 22px;background:#1b211d;color:#d3bf95;font-size:22px;line-height:1.7;margin:24px 0}tw-link{display:block;border:1px solid #475044;background:#1c231e;border-radius:3px;padding:12px 18px;margin:12px 0;color:#ddc58e;font-weight:normal;font-size:16px;line-height:1.6;transition:background .15s,border-color .15s}tw-link:hover{background:#303a2e;color:#fff0bf;border-color:#b39a63}tw-link:focus-visible{outline:2px solid #eed7a1;outline-offset:4px}blockquote{margin:24px 0;padding:18px 24px;border-left:2px solid #818e79;background:#1b211e;color:#bac8b5}.meta,.credit,.hint{font-size:13px;line-height:1.8;color:#9aa696;margin-top:24px}.credit{border-top:1px solid #303a31;padding-top:20px}.status{font-size:13px;color:#b5c9a5}.hud{font-size:12px;color:#9aab95;letter-spacing:1px;border-bottom:1px solid #30392f;padding-bottom:12px;margin-bottom:24px}tw-sidebar{left:-4em;width:3em}tw-icon{color:#b39a63}em{color:#e2c68b}strong{color:#ead6ac}@media(max-width:640px){tw-story{padding:24px 24px 64px;font-size:16px;width:100%;border:none}h1{font-size:62px}h2{font-size:27px}.hero{gap:22px}.sigil{min-width:70px;height:118px;font-size:44px}.quote{font-size:19px}tw-sidebar{position:relative;left:0;display:flex;width:100%;gap:18px;padding:0;margin:0 0 10px}tw-icon{font-size:24px}}
+/* English typography and narrow-screen layout */
+tw-story{font-family:Georgia,"Times New Roman",serif;color:#d9ddd6;background:transparent;line-height:1.8}
+h1,h2,.quote{font-family:Georgia,"Times New Roman",serif}
+h1{font-size:60px;letter-spacing:.035em}.hero-copy{min-width:0}.hero p{letter-spacing:1px;font-family:Arial,sans-serif}.sigil{font-family:Georgia,serif;font-size:28px;min-width:76px;height:126px}
+.eyebrow,.hud,.meta,.credit,.hint,.status,tw-link{font-family:Arial,sans-serif}.hud{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}.eyebrow{letter-spacing:2px}
+@media(max-width:640px){h1{font-size:38px}.hero{gap:18px}.sigil{min-width:44px;height:96px;font-size:21px}.hero p{font-size:11px}.eyebrow{font-size:10px;letter-spacing:1.3px}.hud{font-size:10px;letter-spacing:0}.quote{font-size:19px}}
