@@ -1,0 +1,72 @@
+extends Node
+
+@export var tile_map_path: NodePath = NodePath("../TileMap")
+@export var gate_layer: int = 1
+@export var gate_x: int = 52
+@export var gate_y_start: int = -36
+@export var gate_y_end: int = -27
+@export var required_score: int = 30
+@export var gate_collision_layer: int = 1
+
+var unlocked := false
+var gate_body: StaticBody2D
+
+@onready var tile_map: TileMap = get_node(tile_map_path)
+
+func _ready() -> void:
+	create_gate_collision()
+	GameManager.score_changed.connect(_on_score_changed)
+	check_unlock()
+
+func _process(_delta: float) -> void:
+	check_unlock()
+
+func _on_score_changed(_score: int) -> void:
+	check_unlock()
+
+func check_unlock() -> void:
+	if unlocked or GameManager.score < required_score:
+		return
+
+	unlock_gate()
+
+func unlock_gate() -> void:
+	unlocked = true
+	remove_gate_collision()
+
+	var start_y: int = mini(gate_y_start, gate_y_end)
+	var end_y: int = maxi(gate_y_start, gate_y_end)
+	for y in range(start_y, end_y + 1):
+		tile_map.erase_cell(gate_layer, Vector2i(gate_x, y))
+
+func create_gate_collision() -> void:
+	if gate_body != null:
+		return
+
+	var start_y: int = mini(gate_y_start, gate_y_end)
+	var end_y: int = maxi(gate_y_start, gate_y_end)
+	var tile_size: Vector2i = tile_map.tile_set.tile_size
+	var top_cell_position: Vector2 = tile_map.map_to_local(Vector2i(gate_x, start_y))
+	var bottom_cell_position: Vector2 = tile_map.map_to_local(Vector2i(gate_x, end_y))
+	var gate_center: Vector2 = (top_cell_position + bottom_cell_position) / 2.0
+	var gate_tile_count: int = end_y - start_y + 1
+
+	gate_body = StaticBody2D.new()
+	gate_body.name = "GateCollision"
+	gate_body.collision_layer = gate_collision_layer
+	gate_body.collision_mask = 0
+	add_child(gate_body)
+	gate_body.global_position = tile_map.to_global(gate_center)
+
+	var shape: CollisionShape2D = CollisionShape2D.new()
+	var rectangle: RectangleShape2D = RectangleShape2D.new()
+	rectangle.size = Vector2(tile_size.x, tile_size.y * gate_tile_count)
+	shape.shape = rectangle
+	gate_body.add_child(shape)
+
+func remove_gate_collision() -> void:
+	if gate_body == null:
+		return
+
+	gate_body.queue_free()
+	gate_body = null

@@ -1,0 +1,33 @@
+# 继承自 Node2D 节点（Godot 引擎中 2D 游戏对象的基础类，可用于创建精灵、触发器等 2D 实体）
+extends Node2D
+
+# 定义常量：角色/物体的移动速度，单位为「像素/秒」（常量用大写字母命名是代码规范，便于区分）
+const SPEED = 60
+
+# 定义变量：控制移动方向，1 表示向右移动，-1 表示向左移动（初始值设为 1，即默认向右）
+var direction = 1
+
+# @onready 注解：节点就绪后（场景加载完成、节点树初始化完毕）才获取子节点引用
+## 获取名为 "RayCast2Dright" 的子节点（右侧射线检测器），并指定类型为 RayCast2D（射线检测节点）
+#@onready var ray_cast_2_dright: RayCast2D = $RayCast2Dright
+## 获取名为 "RayCast2Dleft" 的子节点（左侧射线检测器），并指定类型为 RayCast2D
+#@onready var ray_cast_2_dleft: RayCast2D = $RayCast2Dleft
+
+@onready var ray_cast_2_dright: RayCast2D = $RayCast2Dright
+@onready var ray_cast_2_dleft: RayCast2D = $RayCast2D2left
+
+# _process 函数：每帧调用一次（Godot 核心帧更新函数）
+# delta 参数：当前帧与上一帧的时间间隔（单位：秒），用于保证移动速度不受帧率影响（帧率高时 delta 小，帧率低时 delta 大，相乘后速度稳定）
+func _process(delta: float) -> void:
+	# 检测右侧射线是否碰撞到其他物体（如墙壁、障碍物）
+	if ray_cast_2_dright.is_colliding():
+		# 若右侧碰撞，将移动方向改为 -1（向左移动，实现“碰到右边就掉头”）
+		direction = -1
+	# 检测左侧射线是否碰撞到其他物体
+	if ray_cast_2_dleft.is_colliding():
+		# 若左侧碰撞，将移动方向改为 1（向右移动，实现“碰到左边就掉头”）
+		direction = 1
+		
+	# 更新节点的 X 轴位置：方向 × 速度 × 时间间隔
+	# 作用：让节点以稳定速度沿水平方向移动，碰到左右障碍物时自动反向（来回移动效果）
+	position.x += direction * SPEED * delta

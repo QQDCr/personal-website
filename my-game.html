@@ -1,0 +1,107 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="My Game — Godot platformer project, design sketch and GDScript logic."><title>My Game | Luo Jian</title><link rel="stylesheet" href="portfolio.css?v=single-language-1"><link rel="stylesheet" href="my-game.css"></head><body><div id="language-content"><a class="skip-link" href="#project">Skip to project</a><header class="home-header"><a class="home-brand" href="index.html">Luo Jian<span>GAME DESIGN PORTFOLIO</span></a><nav><a href="index.html#projects">All projects</a><button type="button" class="language-toggle" data-language="zh">中文</button></nav></header>
+<main class="game-case" id="project"><p class="overline">GODOT · GDSCRIPT · PLATFORMER</p><h1>My Game</h1><p class="lede">A 2D platformer prototype about gaining height, collecting access, and finding a way out.</p><p>The project retains its original working title, “My Game”. This case study reads the supplied Godot scenes and scripts to explain how its systems fit together.</p>
+<div class="meta-row"><span>Godot / GDScript</span><span>Double jump + glide</span><span>Score-gated progression</span></div>
+<nav class="chapter-links"><a href="#design">Design sketch</a><a href="#logic">Programming logic</a><a href="#structure">Scene structure</a><a href="#source">Source excerpts</a></nav>
+<section id="design"><p class="overline">01 / DESIGN STUDY</p><h2>Learn. Collect. Cross. Escape.</h2><p>A useful design interpretation is to connect movement challenges with collection-driven access: a second jump allows correction, gliding extends reach, and coins provide a reason to explore before a gate opens. This is a retrospective interpretation, not a claim about the project's original inspirations.</p>
+<figure><a href="assets/my-game/design-sketch.svg" target="_blank" rel="noopener"><img src="assets/my-game/design-sketch.svg" width="1200" height="680" alt="New retrospective concept sketch, prepared with AI assistance from the project mechanics. Not a gameplay screenshot or an exact map."></a><figcaption>New retrospective concept sketch, prepared with AI assistance from the project mechanics. Not a gameplay screenshot or an exact map.</figcaption></figure>
+<div class="columns"><article><h3>Movement vocabulary</h3><p>A/D or Left/Right moves; Space jumps, up to twice before landing. Holding Down in the air after a jump enables glide. Mushroom springs set upward velocity only during a fall.</p></article><article><h3>Progression vocabulary</h3><p>Coin pickups add 30 points. The first score gate uses a 900-point threshold in the scene. A checkpoint portal resets the score, stores a respawn position, and changes the second gate's threshold to 900.</p></article></div></section>
+<section id="logic"><p class="overline">02 / PROGRAMMING LOGIC</p><h2>From input to motion; from signals to progression.</h2><p class="note">This is a Godot GDScript project. The following “blueprints” are explanatory logic diagrams reconstructed from code, not Unreal Engine Blueprint graphs or original editor screenshots.</p>
+<figure><a href="assets/my-game/movement-blueprint.svg" target="_blank" rel="noopener"><img src="assets/my-game/movement-blueprint.svg" width="1200" height="680" alt="Movement flow: jump count, glide checks, gravity and speed modifiers, then collision-aware movement."></a><figcaption>Movement flow: jump count, glide checks, gravity and speed modifiers, then collision-aware movement.</figcaption></figure>
+<p>The controller uses a base speed of 150, jump velocity of −300, glide gravity scale of 0.15 and a 1.5× horizontal boost. Landing resets the jump counter. These values are taken directly from player.gd.</p>
+<figure><a href="assets/my-game/progression-blueprint.svg" target="_blank" rel="noopener"><img src="assets/my-game/progression-blueprint.svg" width="1200" height="680" alt="Signal and state diagram: score → UI and gate; portal → checkpoint; death → reload → restore."></a><figcaption>Signal and state diagram: score → UI and gate; portal → checkpoint; death → reload → restore.</figcaption></figure>
+<p>GameManager is an autoload singleton. Its score setter emits score_changed, which the HUD and gates subscribe to. Gate opening removes both the generated collision body and the corresponding TileMap cells. Slimes use left/right RayCast2D hits to reverse patrol direction at speed 60.</p></section>
+<section id="structure"><p class="overline">03 / SCENE ARCHITECTURE</p><h2>A scene tree with focused responsibilities.</h2><pre>Autoload
+├── GameManager → score_changed / score / checkpoint
+└── Music
+scenes/game.tscn
+├── Player (CharacterBody2D) → player.gd
+│   └── Camera2D2
+├── TileMap → terrain and gate cells
+├── GameManager (CanvasLayer) → score UI / end message
+├── AutoUnlockGate / AutoUnlockGate2 → score_gate.gd
+├── Node2(Slime) → slime instances / RayCast2D patrol
+├── Node2 → Mushroom_Spring instances
+├── Node3 → portal instances / destination markers
+└── EndGoal (Area2D) → end_goal.gd</pre>
+<p>The CanvasLayer called GameManager is the scene's UI manager; it delegates scoring to the separate autoload GameManager. The two similarly named nodes have different responsibilities.</p></section>
+<section id="source"><p class="overline">04 / CODE EVIDENCE</p><h2>Read the implementation.</h2>
+<details><summary>Score updates and signals · global_game_manager.gd</summary><pre><code>func add_point(amount: int = 30) -&gt; void:
+	score += amount</code></pre><a href="assets/my-game/code/global_game_manager.gd.txt" download>Download complete script</a></details><details><summary>Gate condition and collision removal · scenes/score_gate.gd</summary><pre><code>func check_unlock() -&gt; void:
+	if unlocked or GameManager.score &lt; required_score:
+		return
+
+	unlock_gate()
+
+func unlock_gate() -&gt; void:
+	unlocked = true
+	remove_gate_collision()
+
+	var start_y: int = mini(gate_y_start, gate_y_end)
+	var end_y: int = maxi(gate_y_start, gate_y_end)
+	for y in range(start_y, end_y + 1):
+		tile_map.erase_cell(gate_layer, Vector2i(gate_x, y))</code></pre><a href="assets/my-game/code/scenes-score_gate.gd.txt" download>Download complete script</a></details><details><summary>Checkpoint portal · portal.gd</summary><pre><code>func _on_body_entered(body: Node2D) -&gt; void:
+	if body.is_in_group("player"):
+		print("2")
+		var gate2 = get_tree().current_scene.get_node("AutoUnlockGate2")
+		gate2.required_score = 900
+
+		print("portal reset score")
+		GameManager.reset_score()
+		GameManager.set_checkpoint(Vector2(1496, -1256))
+		body.global_position = $DestinationPoint.global_position</code></pre><a href="assets/my-game/code/portal.gd.txt" download>Download complete script</a></details>
+<p>Additional scripts: <a href="assets/my-game/code/scenes-player.gd.txt">player.gd</a> · <a href="assets/my-game/code/slime.gd.txt">slime.gd</a> · <a href="assets/my-game/code/scenes-mushroom_spring.gd.txt">mushroom_spring.gd</a></p></section>
+<section><p class="overline">05 / PROTOTYPE NOTES</p><h2>What the source reveals.</h2><ul><li>The gate script defaults to 30 points, but scene overrides use 900 and initially 9999. An older hint still mentions 30; UI text should derive from the active threshold.</li><li>The score gate checks both a signal and every frame. A future cleanup could consolidate this into one event-driven path.</li><li>There are two completion paths: EndGoal disables player physics, while the question-block path displays the escape message without disabling the physics loop. Their end-state behavior could be unified.</li></ul>
+<p class="note">Documentation is based on source inspection. No compatible Godot runtime was available for a gameplay capture in this session; this page does not claim a tested web build. No historical sketches or verified asset-license document were found in the supplied folder. Diagrams and page copy were prepared with AI assistance; original gameplay authorship and asset provenance are not inferred.</p></section></main><footer class="home-footer"><span>Luo Jian · My Game</span><a href="#project">Back to top ↑</a></footer></div><template id="chinese-content"><a class="skip-link" href="#project">跳转到项目</a><header class="home-header"><a class="home-brand" href="index.html?lang=zh">Luo Jian<span>GAME DESIGN PORTFOLIO</span></a><nav><a href="index.html?lang=zh#projects">全部作品</a><button type="button" class="language-toggle" data-language="en">EN</button></nav></header>
+<main class="game-case" id="project"><p class="overline">GODOT · GDSCRIPT · PLATFORMER</p><h1>My Game</h1><p class="lede">一个围绕攀升、收集解锁与寻找出口展开的 2D 平台跳跃原型。</p><p>沿用工程中的原始工作名称“My Game”。本展示根据提供的 Godot 场景与脚本，梳理游戏机制及其实现。</p>
+<div class="meta-row"><span>Godot / GDScript</span><span>二段跳 + 滑翔</span><span>分数驱动的关卡推进</span></div>
+<nav class="chapter-links"><a href="#design">设计草图</a><a href="#logic">编程逻辑</a><a href="#structure">场景结构</a><a href="#source">源码片段</a></nav>
+<section id="design"><p class="overline">01 / DESIGN STUDY</p><h2>学习操作，收集资源，跨越障碍，寻找出口。</h2><p>可以将现有机制理解为“移动挑战 + 收集解锁”：二段跳提供修正机会，滑翔扩大横向可达范围，金币则鼓励玩家在开门前探索。这是基于现有实现的设计解读，不代表作者最初的灵感来源。</p>
+<figure><a href="assets/my-game/design-sketch.svg" target="_blank" rel="noopener"><img src="assets/my-game/design-sketch.svg" width="1200" height="680" alt="根据项目机制新绘制的回顾性概念草图，使用 AI 辅助整理。不是游戏截图，也不是精确地图。"></a><figcaption>根据项目机制新绘制的回顾性概念草图，使用 AI 辅助整理。不是游戏截图，也不是精确地图。</figcaption></figure>
+<div class="columns"><article><h3>移动机制</h3><p>A/D 或左右方向键移动；空格跳跃，落地前最多跳两次。起跳后在空中按住下方向键可滑翔。蘑菇弹簧仅在角色下落时施加向上的速度。</p></article><article><h3>推进机制</h3><p>拾取金币增加 30 分；场景中的第一道分数门需要 900 分。检查点传送门会清空分数、保存复活位置，并将第二道门的要求调整到 900 分。</p></article></div></section>
+<section id="logic"><p class="overline">02 / PROGRAMMING LOGIC</p><h2>从输入到移动，从信号到关卡推进。</h2><p class="note">这是使用 GDScript 的 Godot 项目。下方“蓝图”是根据代码重新整理的逻辑示意图，并非 Unreal Engine Blueprint，也不是原始编辑器截图。</p>
+<figure><a href="assets/my-game/movement-blueprint.svg" target="_blank" rel="noopener"><img src="assets/my-game/movement-blueprint.svg" width="1200" height="680" alt="移动逻辑图：跳跃次数、滑翔条件、重力与速度修正，最后执行碰撞移动。"></a><figcaption>移动逻辑图：跳跃次数、滑翔条件、重力与速度修正，最后执行碰撞移动。</figcaption></figure>
+<p>角色基础速度为 150，跳跃速度为 −300；滑翔重力倍率为 0.15，水平速度倍率为 1.5。落地会重置跳跃次数。这些数值直接来自 player.gd。</p>
+<figure><a href="assets/my-game/progression-blueprint.svg" target="_blank" rel="noopener"><img src="assets/my-game/progression-blueprint.svg" width="1200" height="680" alt="信号与状态图：分数驱动界面和门；传送门保存检查点；死亡后重载并恢复位置。"></a><figcaption>信号与状态图：分数驱动界面和门；传送门保存检查点；死亡后重载并恢复位置。</figcaption></figure>
+<p>GameManager 是自动加载单例。分数 setter 发出 score_changed 信号，界面和分数门监听该信号；开门时同时删除生成的碰撞体和对应 TileMap 格子。史莱姆通过左右 RayCast2D 碰撞检测改变巡逻方向，速度为 60。</p></section>
+<section id="structure"><p class="overline">03 / SCENE ARCHITECTURE</p><h2>用场景树分配功能。</h2><pre>Autoload
+├── GameManager → score_changed / score / checkpoint
+└── Music
+scenes/game.tscn
+├── Player (CharacterBody2D) → player.gd
+│   └── Camera2D2
+├── TileMap → terrain and gate cells
+├── GameManager (CanvasLayer) → score UI / end message
+├── AutoUnlockGate / AutoUnlockGate2 → score_gate.gd
+├── Node2(Slime) → slime instances / RayCast2D patrol
+├── Node2 → Mushroom_Spring instances
+├── Node3 → portal instances / destination markers
+└── EndGoal (Area2D) → end_goal.gd</pre>
+<p>场景内名为 GameManager 的 CanvasLayer 负责界面，并把加分交给独立的自动加载 GameManager。两者名称相似，但职责不同。</p></section>
+<section id="source"><p class="overline">04 / CODE EVIDENCE</p><h2>查看实际实现。</h2>
+<details><summary>分数更新与信号 · global_game_manager.gd</summary><pre><code>func add_point(amount: int = 30) -&gt; void:
+	score += amount</code></pre><a href="assets/my-game/code/global_game_manager.gd.txt" download>下载完整脚本</a></details><details><summary>开门条件与碰撞移除 · scenes/score_gate.gd</summary><pre><code>func check_unlock() -&gt; void:
+	if unlocked or GameManager.score &lt; required_score:
+		return
+
+	unlock_gate()
+
+func unlock_gate() -&gt; void:
+	unlocked = true
+	remove_gate_collision()
+
+	var start_y: int = mini(gate_y_start, gate_y_end)
+	var end_y: int = maxi(gate_y_start, gate_y_end)
+	for y in range(start_y, end_y + 1):
+		tile_map.erase_cell(gate_layer, Vector2i(gate_x, y))</code></pre><a href="assets/my-game/code/scenes-score_gate.gd.txt" download>下载完整脚本</a></details><details><summary>检查点传送门 · portal.gd</summary><pre><code>func _on_body_entered(body: Node2D) -&gt; void:
+	if body.is_in_group("player"):
+		print("2")
+		var gate2 = get_tree().current_scene.get_node("AutoUnlockGate2")
+		gate2.required_score = 900
+
+		print("portal reset score")
+		GameManager.reset_score()
+		GameManager.set_checkpoint(Vector2(1496, -1256))
+		body.global_position = $DestinationPoint.global_position</code></pre><a href="assets/my-game/code/portal.gd.txt" download>下载完整脚本</a></details>
+<p>更多脚本： <a href="assets/my-game/code/scenes-player.gd.txt">player.gd</a> · <a href="assets/my-game/code/slime.gd.txt">slime.gd</a> · <a href="assets/my-game/code/scenes-mushroom_spring.gd.txt">mushroom_spring.gd</a></p></section>
+<section><p class="overline">05 / PROTOTYPE NOTES</p><h2>源码中的后续改进空间。</h2><ul><li>门脚本默认阈值为 30，但场景覆盖值为 900 和初始 9999；旧提示仍写着 30。后续应让提示文字直接读取当前阈值。</li><li>分数门同时监听信号并逐帧检查，后续可统一为事件驱动，减少重复逻辑。</li><li>存在两条完成路径：EndGoal 会停用玩家物理更新，而问号方块路径只显示逃离提示，没有停用物理循环。后续可统一结束状态。</li></ul>
+<p class="note">本页依据源码检查整理。本次未找到可用的匹配 Godot 运行环境，因此没有制作运行截图，也没有声称提供已测试的网页版。提供的文件夹中未找到历史草图或可核实的素材授权文档。图解与页面文案使用 AI 辅助整理，不据此推断原游戏各部分的作者或素材来源。</p></section></main><footer class="home-footer"><span>Luo Jian · My Game</span><a href="#project">回到顶部 ↑</a></footer></template><script type="application/json" id="language-metadata">{"en":{"title":"My Game | Luo Jian","description":"Godot platformer: design sketch, movement and progression logic."},"zh":{"title":"My Game 平台跳跃 | 罗健","description":"Godot 平台跳跃项目：设计草图、编程逻辑与场景蓝图。 "}}</script><script src="language.js?v=1"></script></body></html>

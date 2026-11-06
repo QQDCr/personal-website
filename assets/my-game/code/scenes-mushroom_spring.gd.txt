@@ -1,0 +1,20 @@
+extends Area2D
+
+@export var bounce_velocity: float = -250.0
+
+func _ready() -> void:
+	monitoring = true
+	body_entered.connect(_on_body_entered)
+	print("Mushroom spring ready")
+
+func _on_body_entered(body: Node2D) -> void:
+	print("Something touched mushroom: ", body.name)
+
+	if not body.is_in_group("player"):
+		print("Not player")
+		return
+
+	print("Player touched mushroom")
+
+	if body.has_method("spring_bounce"):
+		body.spring_bounce(bounce_velocity)
