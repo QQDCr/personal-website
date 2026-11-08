@@ -1,0 +1,12 @@
+.sherlock-page h1{font-size:clamp(36px,4.7vw,66px);letter-spacing:-2px;line-height:1.12}
+.sherlock-page .hero{gap:42px}.sherlock-page .hero-image{max-width:512px;background:#0d1019;border:1px solid #3b4164}
+.sherlock-page .hero-image img,.room-gallery img{image-rendering:pixelated}
+.actions,.document-links{display:flex;flex-wrap:wrap;gap:12px 22px}.sherlock-page .secondary{background:transparent;border:1px solid #69768a}
+.game-frame{display:block;width:min(100%,720px);height:auto;aspect-ratio:1;border:1px solid #4c566b;margin:28px auto 0;background:#000}
+.sherlock-page .play-note{font-size:12px;margin-top:18px;max-width:750px}
+.room-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.room-gallery figure{padding:12px;background:#11151f;border:1px solid #3a424d}.room-gallery img{width:100%;aspect-ratio:1}
+.room-gallery figcaption,.document-preview figcaption{font-size:12px;color:var(--muted);margin-top:14px}
+.document-preview{max-width:580px;margin:30px 0 0}.document-preview img{width:100%;background:white;border:1px solid #59616d}
+.document-links{font-size:14px}.sherlock-page details ol{font-size:14px;color:var(--muted);padding-left:22px}.sherlock-page details li+li{margin-top:10px}
+@media(max-width:700px){.room-gallery{grid-template-columns:1fr}.room-gallery figure{max-width:450px;margin:auto}.sherlock-page h1{letter-spacing:-1px}.sherlock-page .hero{gap:28px}.sherlock-page nav{gap:14px}}
